@@ -8,6 +8,10 @@ const mapPools = [
     {
         path : 'generatedMaps',
         size : 30
+    },
+    {
+        path : 'originalMaps',
+        size : 50
     }
 ]
 
