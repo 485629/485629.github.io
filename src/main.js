@@ -116,6 +116,11 @@ window.restartGame = function() {
     gameStart(currentMap); // You'll need to define how to reinitialize your game
 };
 
+window.move = async function(orientation){
+    await handleKeyPressFunction(orientation);
+    handleGameCompletion();
+};
+
 
 function initAttributes(size){
     isGameRunning = true;
