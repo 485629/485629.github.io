@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maze Game</title>
+    <link rel="stylesheet" href="css/styles.css"> <!-- Adjust the path if needed -->
+</head>
+<body>
+    <div class="parent-container">
+        <div class="game-container">
+            <select id="folderSelector">
+            
+            </select>
+            <select id="mapSelector">
+            
+            </select>
+            <div id="gameContainer">
+                <canvas id="gameCanvas" width="400" height="400"></canvas> <!-- Set appropriate size -->
+            </div>
+            <button onclick="restartGame()">Restart Game</button>
+            <div id="winMessage" style="display: none;">
+                <p>Congratulations, you won!</p>
+                <button onclick="restartGame()">Restart Game</button>
+            </div>
+            <a href="mapEdit.html">Open Map Editor</a>
+        </div>
+    </div>
+
+    <script src="src/main.js" type="module"></script> <!-- Adjust the path if needed -->
+</body>
+</html>
