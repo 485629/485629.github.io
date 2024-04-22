@@ -13,9 +13,10 @@
             "y": 0,
             "walls": [
                 "down",
-                "left",
-                "up"
-            ]
+                "up",
+                "left"
+            ],
+            "food": true
         },
         {
             "x": 1,
@@ -58,8 +59,8 @@
             "x": 6,
             "y": 0,
             "walls": [
-                "down",
                 "right",
+                "down",
                 "up"
             ]
         },
@@ -68,9 +69,10 @@
             "y": 0,
             "walls": [
                 "down",
-                "left",
-                "up"
-            ]
+                "up",
+                "left"
+            ],
+            "food": true
         },
         {
             "x": 8,
@@ -91,8 +93,8 @@
             "x": 10,
             "y": 0,
             "walls": [
-                "up",
-                "right"
+                "right",
+                "up"
             ]
         },
         {
@@ -153,8 +155,8 @@
             "x": 8,
             "y": 1,
             "walls": [
-                "up",
-                "right"
+                "right",
+                "up"
             ]
         },
         {
@@ -318,8 +320,8 @@
             "x": 10,
             "y": 3,
             "walls": [
-                "down",
-                "right"
+                "right",
+                "down"
             ]
         },
         {
@@ -353,7 +355,9 @@
         {
             "x": 4,
             "y": 4,
-            "walls": []
+            "walls": [
+                "down"
+            ]
         },
         {
             "x": 5,
@@ -389,8 +393,8 @@
             "x": 10,
             "y": 4,
             "walls": [
-                "up",
-                "right"
+                "right",
+                "up"
             ]
         },
         {
@@ -418,14 +422,15 @@
             "x": 3,
             "y": 5,
             "walls": [
-                "up",
-                "right"
+                "right",
+                "up"
             ]
         },
         {
             "x": 4,
             "y": 5,
             "walls": [
+                "up",
                 "left"
             ]
         },
@@ -528,8 +533,8 @@
             "x": 9,
             "y": 6,
             "walls": [
-                "up",
-                "right"
+                "right",
+                "up"
             ]
         },
         {
@@ -681,16 +686,16 @@
             "x": 9,
             "y": 8,
             "walls": [
-                "up",
-                "right"
+                "right",
+                "up"
             ]
         },
         {
             "x": 10,
             "y": 8,
             "walls": [
-                "left",
-                "right"
+                "right",
+                "left"
             ]
         },
         {
@@ -700,7 +705,8 @@
                 "right",
                 "down",
                 "left"
-            ]
+            ],
+            "food": true
         },
         {
             "x": 1,
@@ -761,26 +767,28 @@
             "x": 10,
             "y": 9,
             "walls": [
-                "left",
+                "right",
                 "down",
-                "right"
-            ]
+                "left"
+            ],
+            "food": true
         },
         {
             "x": 0,
             "y": 10,
             "walls": [
                 "down",
-                "left",
-                "up"
-            ]
+                "up",
+                "left"
+            ],
+            "food": true
         },
         {
             "x": 1,
             "y": 10,
             "walls": [
-                "down",
-                "right"
+                "right",
+                "down"
             ]
         },
         {
@@ -795,8 +803,8 @@
             "x": 3,
             "y": 10,
             "walls": [
-                "down",
                 "right",
+                "down",
                 "up"
             ]
         },
@@ -826,8 +834,8 @@
             "x": 7,
             "y": 10,
             "walls": [
-                "down",
                 "right",
+                "down",
                 "up"
             ]
         },
@@ -853,14 +861,14 @@
             "x": 10,
             "y": 10,
             "walls": [
-                "left",
-                "down",
                 "right",
-                "up"
+                "down",
+                "up",
+                "left"
             ]
         }
     ],
-    "foodCount": 9,
+    "foodCount": 14,
     "teleports": [
         {
             "x": 3,
