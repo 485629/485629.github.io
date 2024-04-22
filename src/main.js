@@ -109,11 +109,15 @@ function handleGameCompletion() {
     }
 }
 
-window.restartGame = function() {
+function restart(){
     // Reset game state
     isGameRunning = true;
     document.getElementById('winMessage').style.display = 'none';
     gameStart(currentMap); // You'll need to define how to reinitialize your game
+}
+
+window.restartGame = function() {
+    restart();
 };
 
 window.move = async function(orientation){
@@ -133,7 +137,7 @@ window.changeMap = async function(direction){
             }
             currentMap = maps[ind];
             mapSelector.options.selectedIndex = ind;
-            gameStart(currentMap);
+            restart();
             break;
         case "previous":
             if(ind == 0){
@@ -144,7 +148,7 @@ window.changeMap = async function(direction){
             }
             currentMap = maps[ind];
             mapSelector.options.selectedIndex = ind;
-            gameStart(currentMap);
+            restart();
             break;
         default:
             break;
