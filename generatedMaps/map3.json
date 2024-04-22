@@ -172,8 +172,7 @@
             "walls": [
                 "left",
                 "up"
-            ],
-            "food": true
+            ]
         },
         {
             "x": 1,
@@ -264,8 +263,7 @@
             "y": 4,
             "walls": [
                 "right"
-            ],
-            "food": true
+            ]
         },
         {
             "x": 0,
@@ -375,5 +373,5 @@
             ]
         }
     ],
-    "foodCount": 3
+    "foodCount": 1
 }
