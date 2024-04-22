@@ -121,6 +121,36 @@ window.move = async function(orientation){
     handleGameCompletion();
 };
 
+window.changeMap = async function(direction){
+    let ind = maps.indexOf(currentMap);
+    switch (direction) {
+        case "next":
+            if(ind == maps.length - 1){
+                ind = 0;
+            }
+            else{
+                ind += 1;
+            }
+            currentMap = maps[ind];
+            mapSelector.options.selectedIndex = ind;
+            gameStart(currentMap);
+            break;
+        case "previous":
+            if(ind == 0){
+                ind = maps.length - 1;
+            }
+            else{
+                ind -= 1;
+            }
+            currentMap = maps[ind];
+            mapSelector.options.selectedIndex = ind;
+            gameStart(currentMap);
+            break;
+        default:
+            break;
+    }
+}
+
 
 function initAttributes(size){
     isGameRunning = true;
