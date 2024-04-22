@@ -225,6 +225,7 @@ async function handleKeyPress(event) {
         case 'ArrowDown': await handleKeyPressFunction("down"); break;
         case 'ArrowLeft': await handleKeyPressFunction("left"); break;
         case 'ArrowRight': await handleKeyPressFunction("right"); break;
+        case 'r': restartGame(); return;
     }
     
     handleGameCompletion();
