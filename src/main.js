@@ -16,11 +16,15 @@ const app = initializeApp(firebaseConfig);
 // const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-async function addResponseTime(rt) {
+async function postResponseTime() {
+    endTime = Date.now();
+    responseTime = endTime - startTime;
     await addDoc(collection(db, "responseTime"), {
       map: currentMap,
-      responseTime: rt,
-      numberOfMoves: numOfMoves
+      date: new Date(Date.now()).toLocaleString('en-GB', { timeZone: 'UTC' }),
+      responseTime: responseTime,
+      numberOfMoves: numOfMoves,
+      gameFinished: !isGameRunning
     });
   }
 
@@ -50,10 +54,12 @@ document.getElementById('feedbackForm').addEventListener('submit', async functio
     console.log('Submitting with rating: ' + rating + ' and feedback: ' + feedback);
     await addDoc(collection(db, "feedback"), {
         map: currentMap,
+        date: new Date(Date.now()).toLocaleString('en-GB', { timeZone: 'UTC' }),
         rating: rating,
         feedback: feedback,
         responseTime: responseTime,
-        numberOfMoves: numOfMoves
+        numberOfMoves: numOfMoves,
+        gameFinished: !isGameRunning
     })
     .then(() => {
         console.log('Feedback submitted successfully');
@@ -188,20 +194,20 @@ function gameStart(map){
 }
 
 async function handleGameCompletion() {
-    if(foods.length == 0){
-        endTime = Date.now();
-        responseTime = endTime - startTime;
-        await addResponseTime(responseTime);
+    if(foods.length == 0 && isGameRunning){
         run();
         isGameRunning = false;
+        await postResponseTime();
         requestAnimationFrame(run);
         document.getElementById('winMessage').style.display = 'block';
         document.getElementById('gameControls').style.display = 'none';
         document.getElementById('feedbackForm').style.display = 'block';
     }
 }
-function restart(){
-    // Reset game state
+async function restart(){
+    if(isGameRunning){
+        await postResponseTime();
+    }
     firstMoveDone = false;
     isGameRunning = true;
     document.getElementById('winMessage').style.display = 'none';
@@ -211,8 +217,8 @@ function restart(){
     gameStart(currentMap); // You'll need to define how to reinitialize your game
 }
 
-window.restartGame = function() {
-    restart();
+window.restartGame = async function() {
+    await restart();
 };
 window.showForm = function(disp) {
     document.getElementById('feedbackForm').style.display = disp;
@@ -223,9 +229,8 @@ window.move = async function(orientation){
     await handleGameCompletion();
 };
 
-window.changeMap = function(direction){
+window.changeMap = async function(direction){
     let ind = maps.indexOf(currentMap);
-    console.log(ind);
     switch (direction) {
         case "next":
             if(ind == maps.length - 1){
@@ -236,7 +241,7 @@ window.changeMap = function(direction){
             }
             currentMap = maps[ind];
             mapSelector.options.selectedIndex = ind;
-            restart();
+            await restart();
             break;
         case "previous":
             if(ind == 0){
@@ -247,7 +252,7 @@ window.changeMap = function(direction){
             }
             currentMap = maps[ind];
             mapSelector.options.selectedIndex = ind;
-            restart();
+            await restart();
             break;
         default:
             break;
