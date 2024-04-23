@@ -1,4 +1,72 @@
 // main.js
+import { initializeApp } from 'https://cdn.skypack.dev/firebase/app';
+import { getFirestore, collection, getDocs, addDoc } from 'https://cdn.skypack.dev/firebase/firestore';
+
+const firebaseConfig = {
+    apiKey: "AIzaSyAXqxpbQ8CUjsLfg2JDA79lbLmrC0-X1bs",
+    authDomain: "kulicka-72cdf.firebaseapp.com",
+    projectId: "kulicka-72cdf",
+    storageBucket: "kulicka-72cdf.appspot.com",
+    messagingSenderId: "50336358074",
+    appId: "1:50336358074:web:c19adcc735a2c5125b2c83",
+    measurementId: "G-3HJW1LCBM2"
+};
+const app = initializeApp(firebaseConfig);
+
+// const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+async function addResponseTime(rt) {
+    await addDoc(collection(db, "responseTimeTest"), {
+      map: currentMap,
+      responseTime: rt,
+      numberOfMoves: numOfMoves
+    });
+  }
+
+// async function fetchResponseTimes() {
+//     const collectionRef = collection(db, 'responseTimeTest');
+//     const snapshot = await getDocs(collectionRef);
+//     const responseTimes = snapshot.docs.map(doc => doc.data().responseTime);
+//     return responseTimes;
+// }
+
+// fetchResponseTimes().then(responseTimes => {
+//     console.log(responseTimes); // Prints an array of response times
+// });
+document.getElementById('feedbackForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    // Get the selected rating or default to "0" if none selected
+    const rating = document.querySelector('input[name="rating"]:checked') ? document.querySelector('input[name="rating"]:checked').value : "0";
+    const feedback = document.getElementById('feedback').value.trim();
+
+    // Validation to prevent both empty feedback and zero rating
+    if (rating === "0" && feedback === "") {
+        alert("Please provide a rating or feedback before submitting.");
+        return;
+    }
+
+    console.log('Submitting with rating: ' + rating + ' and feedback: ' + feedback);
+    await addDoc(collection(db, "feedbackTest"), {
+        map: currentMap,
+        rating: rating,
+        feedback: feedback,
+        responseTime: responseTime,
+        numberOfMoves: numOfMoves
+    })
+    .then(() => {
+        console.log('Feedback submitted successfully');
+        alert('Thank you for your feedback!');
+        document.getElementById('feedbackForm').reset();
+        document.getElementById('feedbackForm').style.display = 'none';
+    })
+    .catch(error => {
+        console.error('Error submitting feedback:', error);
+        alert('Failed to submit feedback.');
+    });
+});
+
 
 // Global variables
 const canvas = document.getElementById('gameCanvas');
@@ -8,7 +76,7 @@ const mapPools = [
     {
         path : 'generatedMaps',
         size : 30
-    },
+    }, 
     {
         path : 'originalMaps',
         size : 50
@@ -75,17 +143,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
 ctx.strokeStyle = 'black'; // Set the color of the stroke
 ctx.lineWidth = 2; // Set the width of the stroke
+document.addEventListener('keydown', async function(event) {
+    // Check if the event target is a form element
+    if (event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA') {
+        // If the event is from an input or textarea, ignore it
+        return;
+    }
 
-window.addEventListener('keydown', handleKeyPress);
+    switch (event.key) {
+        case 'ArrowUp': await handleKeyPressFunction("up"); break;
+        case 'ArrowDown': await handleKeyPressFunction("down"); break;
+        case 'ArrowLeft': await handleKeyPressFunction("left"); break;
+        case 'ArrowRight': await handleKeyPressFunction("right"); break;
+        case 'r': restart(); return;
+    }
+    
+    await handleGameCompletion();
+});
 
 let currentMap;
 let oneCellHeight;
+let numOfMoves = 0;
 let height;
-let gameMap;
 let players = [];
 let foods = [];
 let grid;
 let isGameRunning = true;
+let startTime = Date.now();
+let endTime = Date.now();
+let firstMoveDone = false;
+let responseTime = 0;
 
 const directionDic = {"down": [0,1], "up": [0,-1], "left": [-1,0], "right": [1,0]}
 
@@ -100,33 +187,45 @@ function gameStart(map){
     });
 }
 
-function handleGameCompletion() {
+async function handleGameCompletion() {
     if(foods.length == 0){
+        endTime = Date.now();
+        responseTime = endTime - startTime;
+        await addResponseTime(responseTime);
         run();
         isGameRunning = false;
         requestAnimationFrame(run);
         document.getElementById('winMessage').style.display = 'block';
+        document.getElementById('gameControls').style.display = 'none';
+        document.getElementById('feedbackForm').style.display = 'block';
     }
 }
-
 function restart(){
     // Reset game state
+    firstMoveDone = false;
     isGameRunning = true;
     document.getElementById('winMessage').style.display = 'none';
+    document.getElementById('gameControls').style.display = 'block';
+    document.getElementById('feedbackForm').style.display = 'none';
+    numOfMoves = 0;
     gameStart(currentMap); // You'll need to define how to reinitialize your game
 }
 
 window.restartGame = function() {
     restart();
 };
+window.showForm = function(disp) {
+    document.getElementById('feedbackForm').style.display = disp;
+};
 
 window.move = async function(orientation){
     await handleKeyPressFunction(orientation);
-    handleGameCompletion();
+    await handleGameCompletion();
 };
 
-window.changeMap = async function(direction){
+window.changeMap = function(direction){
     let ind = maps.indexOf(currentMap);
+    console.log(ind);
     switch (direction) {
         case "next":
             if(ind == maps.length - 1){
@@ -251,19 +350,7 @@ function drawElements(){
 
 
 
-async function handleKeyPress(event) {
-    event.preventDefault();
-    
-    switch (event.key) {
-        case 'ArrowUp': await handleKeyPressFunction("up"); break;
-        case 'ArrowDown': await handleKeyPressFunction("down"); break;
-        case 'ArrowLeft': await handleKeyPressFunction("left"); break;
-        case 'ArrowRight': await handleKeyPressFunction("right"); break;
-        case 'r': restartGame(); return;
-    }
-    
-    handleGameCompletion();
-}
+
 
 function checkForFood(cell){
     for (let i = 0; i < foods.length; i++) {
@@ -303,6 +390,13 @@ function sortedPlayers(orientation){
 
 
 async function handleKeyPressFunction(orientation){
+    if(isGameRunning){
+        numOfMoves += 1;
+    }
+    if (firstMoveDone == false){
+        firstMoveDone = true;
+        startTime = Date.now();
+    }
     let players = sortedPlayers(orientation);
 
     players.forEach(async player => {

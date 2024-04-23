@@ -18,7 +18,8 @@ body {
 
 .parent-container {
     display: flex;
-    justify-content: center; /* Center horizontally */
+    flex-direction: row;
+    justify-content:flex-start;
     align-items: center; /* Center vertically */
     height: 100vh; /* Full viewport height */
 }
@@ -48,11 +49,8 @@ body {
 }
 
 #gameControls {
-    position: fixed;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
+    flex-grow: 1; /* Allow controls to grow as needed */
+    text-align: center; /* Align controls to the right */
 
 }
 
@@ -73,6 +71,50 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.rating input {
+    display: none;
+}
+
+.rating label {
+    cursor: pointer;
+    width: 20px;
+    font-size: 25px;
+    color: #777;
+}
+
+.rating label:before {
+    content: '★';  
+}
+
+.rating input:checked ~ label {
+    color: gold;
+}
+.star-rating {
+    direction: rtl; /* Right-to-left to allow filling stars from right to left */
+    font-size: 30px; /* Size of stars */
+    text-align: left;
+}
+  
+.star-rating input {
+    display: none; /* Hide radio buttons */
+}
+  
+.star-rating label {
+    color: #ccc; /* Default star color */
+    cursor: pointer;
+}
+  
+.star-rating label:hover,
+.star-rating label:hover ~ label,
+.star-rating input:checked ~ label {
+    color: gold; /* Color when hovered or selected */
 }
 
 /* .teleport::before {
