@@ -17,7 +17,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 async function addResponseTime(rt) {
-    await addDoc(collection(db, "responseTimeTest"), {
+    await addDoc(collection(db, "responseTime"), {
       map: currentMap,
       responseTime: rt,
       numberOfMoves: numOfMoves
@@ -25,7 +25,7 @@ async function addResponseTime(rt) {
   }
 
 // async function fetchResponseTimes() {
-//     const collectionRef = collection(db, 'responseTimeTest');
+//     const collectionRef = collection(db, 'responseTime');
 //     const snapshot = await getDocs(collectionRef);
 //     const responseTimes = snapshot.docs.map(doc => doc.data().responseTime);
 //     return responseTimes;
@@ -48,7 +48,7 @@ document.getElementById('feedbackForm').addEventListener('submit', async functio
     }
 
     console.log('Submitting with rating: ' + rating + ' and feedback: ' + feedback);
-    await addDoc(collection(db, "feedbackTest"), {
+    await addDoc(collection(db, "feedback"), {
         map: currentMap,
         rating: rating,
         feedback: feedback,
