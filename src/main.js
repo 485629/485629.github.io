@@ -250,10 +250,7 @@ window.changeMap = async function(direction){
     let ind = maps.indexOf(currentMap);
     switch (direction) {
         case "next":
-            if(ind == maps.length - 1){
-                ind = 0;
-            }
-            else{
+            if(ind != maps.length - 1){
                 ind += 1;
             }
             currentMap = maps[ind];
@@ -261,10 +258,7 @@ window.changeMap = async function(direction){
             await restart();
             break;
         case "previous":
-            if(ind == 0){
-                ind = maps.length - 1;
-            }
-            else{
+            if(ind != 0){
                 ind -= 1;
             }
             currentMap = maps[ind];
