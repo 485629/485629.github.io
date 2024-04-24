@@ -19,7 +19,7 @@ const db = getFirestore(app);
 async function postResponseTime() {
     endTime = Date.now();
     responseTime = endTime - startTime;
-    await addDoc(collection(db, "responseTime"), {
+    await addDoc(collection(db, "responseTimeNew"), {
       map: currentMap,
       date: new Date(Date.now()).toLocaleString('en-GB', { timeZone: 'UTC' }),
       responseTime: responseTime,
@@ -29,7 +29,7 @@ async function postResponseTime() {
   }
 
 // async function fetchResponseTimes() {
-//     const collectionRef = collection(db, 'responseTime');
+//     const collectionRef = collection(db, 'responseTimeNew');
 //     const snapshot = await getDocs(collectionRef);
 //     const responseTimes = snapshot.docs.map(doc => doc.data().responseTime);
 //     return responseTimes;
@@ -52,7 +52,7 @@ document.getElementById('feedbackForm').addEventListener('submit', async functio
     }
 
     console.log('Submitting with rating: ' + rating + ' and feedback: ' + feedback);
-    await addDoc(collection(db, "feedback"), {
+    await addDoc(collection(db, "feedbackNew"), {
         map: currentMap,
         date: new Date(Date.now()).toLocaleString('en-GB', { timeZone: 'UTC' }),
         rating: rating,
@@ -80,12 +80,20 @@ const ctx = canvas.getContext('2d');
 
 const mapPools = [
     {
-        path : 'generatedMaps',
-        size : 30
+        path : 'Tutorial',
+        size : 5
+    },
+    {
+        path : 'Two Players As One',
+        size : 10
+    },
+    {
+        path : 'Teleports',
+        size : 10
     }, 
     {
-        path : 'originalMaps',
-        size : 50
+        path : 'Switches And Gates',
+        size : 10
     }
 ]
 
@@ -131,6 +139,7 @@ mapSelector.addEventListener('change', (event) => {
     const selectedMap = event.target.value;
     currentMap = selectedMap;
     document.getElementById('winMessage').style.display = 'none';
+    document.getElementById('welcomeMessage').style.display = 'block';
     gameStart(selectedMap);
 });
 
@@ -144,6 +153,7 @@ folderSelector.addEventListener('change', (event) => {
 document.addEventListener('DOMContentLoaded', () => {
     currentMap = maps[0];
     document.getElementById('winMessage').style.display = 'none';
+    document.getElementById('welcomeMessage').style.display = 'block';
     gameStart(maps[0]);
 });
 
@@ -163,7 +173,8 @@ document.addEventListener('keydown', async function(event) {
         case 'ArrowRight': await handleKeyPressFunction("right"); break;
         case 'r': restart(); return;
     }
-    
+
+    await sleep(300);
     await handleGameCompletion();
 });
 
@@ -180,6 +191,7 @@ let endTime = Date.now();
 let firstMoveDone = false;
 let responseTime = 0;
 
+
 const directionDic = {"down": [0,1], "up": [0,-1], "left": [-1,0], "right": [1,0]}
 
 function gameStart(map){
@@ -193,6 +205,7 @@ function gameStart(map){
     });
 }
 
+
 async function handleGameCompletion() {
     if(foods.length == 0 && isGameRunning){
         run();
@@ -202,10 +215,13 @@ async function handleGameCompletion() {
         document.getElementById('winMessage').style.display = 'block';
         document.getElementById('gameControls').style.display = 'none';
         document.getElementById('feedbackForm').style.display = 'block';
+        document.getElementById('welcomeMessage').style.display = 'none';
     }
 }
+
+
 async function restart(){
-    if(isGameRunning){
+    if(isGameRunning && numOfMoves != 0){
         await postResponseTime();
     }
     firstMoveDone = false;
@@ -213,6 +229,7 @@ async function restart(){
     document.getElementById('winMessage').style.display = 'none';
     document.getElementById('gameControls').style.display = 'block';
     document.getElementById('feedbackForm').style.display = 'none';
+    document.getElementById('welcomeMessage').style.display = 'block';
     numOfMoves = 0;
     gameStart(currentMap); // You'll need to define how to reinitialize your game
 }
@@ -334,7 +351,7 @@ function initializeGame(data) {
     requestAnimationFrame(run);
 }
 
-function run() {
+async function run() {
     if (!isGameRunning) return;
 
     drawElements();
@@ -403,7 +420,7 @@ async function handleKeyPressFunction(orientation){
         startTime = Date.now();
     }
     let players = sortedPlayers(orientation);
-
+    await sleep(100);
     players.forEach(async player => {
         let teleported = false;
         while(true){
@@ -424,6 +441,7 @@ async function handleKeyPressFunction(orientation){
             }
         }
     });
+
 }
 
 
