@@ -356,7 +356,6 @@
             ]
         }
     ],
-    "foodCount": 5,
     "gate": {
         "switch": {
             "x": 1,

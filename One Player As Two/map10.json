@@ -1,13 +1,13 @@
 {
     "players": [
         {
-            "x": 0,
-            "y": 4,
+            "x": 6,
+            "y": 1,
             "color": "red"
         },
         {
-            "x": 6,
-            "y": 6,
+            "x": 5,
+            "y": 5,
             "color": "red"
         }
     ],
@@ -18,15 +18,13 @@
             "y": 0,
             "walls": [
                 "left",
-                "up",
-                "right"
+                "up"
             ]
         },
         {
             "x": 1,
             "y": 0,
             "walls": [
-                "left",
                 "up"
             ]
         },
@@ -34,14 +32,14 @@
             "x": 2,
             "y": 0,
             "walls": [
-                "up",
-                "down"
+                "up"
             ]
         },
         {
             "x": 3,
             "y": 0,
             "walls": [
+                "down",
                 "up"
             ]
         },
@@ -49,6 +47,7 @@
             "x": 4,
             "y": 0,
             "walls": [
+                "down",
                 "up"
             ]
         },
@@ -56,164 +55,168 @@
             "x": 5,
             "y": 0,
             "walls": [
-                "up",
-                "right"
-            ],
-            "food": true
+                "up"
+            ]
         },
         {
             "x": 6,
             "y": 0,
             "walls": [
-                "left",
-                "up",
-                "right"
-            ]
-        },
-        {
-            "x": 0,
-            "y": 1,
-            "walls": [
-                "left"
-            ],
-            "food": true
-        },
-        {
-            "x": 1,
-            "y": 1,
-            "walls": []
-        },
-        {
-            "x": 2,
-            "y": 1,
-            "walls": [
-                "up"
-            ]
-        },
-        {
-            "x": 3,
-            "y": 1,
-            "walls": [
-                "right"
-            ]
-        },
-        {
-            "x": 4,
-            "y": 1,
-            "walls": [
-                "left"
-            ]
-        },
-        {
-            "x": 5,
-            "y": 1,
-            "walls": []
-        },
-        {
-            "x": 6,
-            "y": 1,
-            "walls": [
-                "right"
-            ]
-        },
-        {
-            "x": 0,
-            "y": 2,
-            "walls": [
-                "left"
-            ]
-        },
-        {
-            "x": 1,
-            "y": 2,
-            "walls": [
-                "down"
-            ]
-        },
-        {
-            "x": 2,
-            "y": 2,
-            "walls": [
-                "right"
-            ]
-        },
-        {
-            "x": 3,
-            "y": 2,
-            "walls": [
-                "left"
-            ],
-            "food": true
-        },
-        {
-            "x": 4,
-            "y": 2,
-            "walls": []
-        },
-        {
-            "x": 5,
-            "y": 2,
-            "walls": []
-        },
-        {
-            "x": 6,
-            "y": 2,
-            "walls": [
-                "right"
-            ]
-        },
-        {
-            "x": 0,
-            "y": 3,
-            "walls": [
-                "left",
-                "down"
-            ]
-        },
-        {
-            "x": 1,
-            "y": 3,
-            "walls": [
-                "up"
-            ]
-        },
-        {
-            "x": 2,
-            "y": 3,
-            "walls": []
-        },
-        {
-            "x": 3,
-            "y": 3,
-            "walls": []
-        },
-        {
-            "x": 4,
-            "y": 3,
-            "walls": [
-                "right"
-            ]
-        },
-        {
-            "x": 5,
-            "y": 3,
-            "walls": [
-                "left"
-            ]
-        },
-        {
-            "x": 6,
-            "y": 3,
-            "walls": [
-                "right"
-            ]
-        },
-        {
-            "x": 0,
-            "y": 4,
-            "walls": [
-                "up",
                 "right",
+                "up"
+            ]
+        },
+        {
+            "x": 0,
+            "y": 1,
+            "walls": [
+                "left"
+            ]
+        },
+        {
+            "x": 1,
+            "y": 1,
+            "walls": []
+        },
+        {
+            "x": 2,
+            "y": 1,
+            "walls": []
+        },
+        {
+            "x": 3,
+            "y": 1,
+            "walls": [
+                "up",
+                "right"
+            ]
+        },
+        {
+            "x": 4,
+            "y": 1,
+            "walls": [
+                "left",
+                "up"
+            ]
+        },
+        {
+            "x": 5,
+            "y": 1,
+            "walls": [
+                "down"
+            ]
+        },
+        {
+            "x": 6,
+            "y": 1,
+            "walls": [
+                "right"
+            ]
+        },
+        {
+            "x": 0,
+            "y": 2,
+            "walls": [
+                "left",
+                "down",
+                "right"
+            ]
+        },
+        {
+            "x": 1,
+            "y": 2,
+            "walls": [
+                "left",
+                "down"
+            ],
+            "food": true
+        },
+        {
+            "x": 2,
+            "y": 2,
+            "walls": [
+                "right"
+            ]
+        },
+        {
+            "x": 3,
+            "y": 2,
+            "walls": [
+                "left"
+            ]
+        },
+        {
+            "x": 4,
+            "y": 2,
+            "walls": []
+        },
+        {
+            "x": 5,
+            "y": 2,
+            "walls": [
+                "up",
+                "right"
+            ]
+        },
+        {
+            "x": 6,
+            "y": 2,
+            "walls": [
+                "left",
+                "right"
+            ]
+        },
+        {
+            "x": 0,
+            "y": 3,
+            "walls": [
+                "left",
+                "up"
+            ]
+        },
+        {
+            "x": 1,
+            "y": 3,
+            "walls": [
+                "up"
+            ]
+        },
+        {
+            "x": 2,
+            "y": 3,
+            "walls": []
+        },
+        {
+            "x": 3,
+            "y": 3,
+            "walls": []
+        },
+        {
+            "x": 4,
+            "y": 3,
+            "walls": [
+                "down",
+                "right"
+            ]
+        },
+        {
+            "x": 5,
+            "y": 3,
+            "walls": [
+                "left"
+            ]
+        },
+        {
+            "x": 6,
+            "y": 3,
+            "walls": [
+                "right"
+            ]
+        },
+        {
+            "x": 0,
+            "y": 4,
+            "walls": [
                 "left"
             ]
         },
@@ -221,37 +224,38 @@
             "x": 1,
             "y": 4,
             "walls": [
-                "left"
-            ],
-            "food": true
+                "down",
+                "right"
+            ]
         },
         {
             "x": 2,
             "y": 4,
             "walls": [
-                "right"
+                "left"
             ]
         },
         {
             "x": 3,
             "y": 4,
             "walls": [
-                "left",
-                "down"
+                "down",
+                "right"
             ]
         },
         {
             "x": 4,
             "y": 4,
             "walls": [
-                "right"
+                "left",
+                "up"
             ]
         },
         {
             "x": 5,
             "y": 4,
             "walls": [
-                "left"
+                "down"
             ]
         },
         {
@@ -265,24 +269,29 @@
             "x": 0,
             "y": 5,
             "walls": [
-                "left"
+                "left",
+                "down"
             ]
         },
         {
             "x": 1,
             "y": 5,
-            "walls": []
+            "walls": [
+                "up"
+            ]
         },
         {
             "x": 2,
             "y": 5,
-            "walls": [],
-            "food": true
+            "walls": [
+                "right"
+            ]
         },
         {
             "x": 3,
             "y": 5,
             "walls": [
+                "left",
                 "up"
             ]
         },
@@ -294,12 +303,16 @@
         {
             "x": 5,
             "y": 5,
-            "walls": []
+            "walls": [
+                "right",
+                "up"
+            ]
         },
         {
             "x": 6,
             "y": 5,
             "walls": [
+                "left",
                 "right"
             ]
         },
@@ -308,7 +321,8 @@
             "y": 6,
             "walls": [
                 "left",
-                "down"
+                "down",
+                "up"
             ]
         },
         {
@@ -337,15 +351,16 @@
             "x": 4,
             "y": 6,
             "walls": [
+                "left",
                 "down",
-                "left"
-            ],
-            "food": true
+                "right"
+            ]
         },
         {
             "x": 5,
             "y": 6,
             "walls": [
+                "left",
                 "down"
             ]
         },
@@ -357,6 +372,5 @@
                 "right"
             ]
         }
-    ],
-    "foodCount": 6
+    ]
 }

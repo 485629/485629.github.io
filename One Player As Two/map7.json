@@ -4,7 +4,6 @@
         {"x": 0, "y": 5, "color": "red"},
         {"x": 6, "y": 6, "color": "red"}
     ],
-    "foodCount": 9,
     "cells": [
         {"x": 0, "y": 0, "walls": ["left","right","up"], "food": true},
         {"x": 1, "y": 0, "walls": ["left","up","down"]},

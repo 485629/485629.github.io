@@ -3,7 +3,6 @@
     "players": [
         {"x": 7, "y": 1, "color": "red"}
     ],
-    "foodCount": 9,
     "cells": [
         {"x": 0, "y": 0, "walls": ["left","up"]},
         {"x": 1, "y": 0, "walls": ["up"]},

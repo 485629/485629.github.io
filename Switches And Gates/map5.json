@@ -464,7 +464,6 @@
             "food": true
         }
     ],
-    "foodCount": 6,
     "gate": {
         "switch": {
             "x": 0,

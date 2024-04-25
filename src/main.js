@@ -84,7 +84,7 @@ const mapPools = [
         size : 5
     },
     {
-        path : 'Two Players As One',
+        path : 'One Player As Two',
         size : 10
     },
     {
