@@ -84,7 +84,7 @@ const mapPools = [
         size : 5
     },
     {
-        path : 'One Player As Two',
+        path : 'One Player as Two',
         size : 10
     },
     {
@@ -92,7 +92,7 @@ const mapPools = [
         size : 10
     }, 
     {
-        path : 'Switches And Gates',
+        path : 'Switches and Gates',
         size : 10
     }
 ]
